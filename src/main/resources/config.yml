@@ -1,0 +1,18 @@
+database:
+  type: 'sqlite' # Opções válidas: 'sqlite' e 'mysql'
+  mysql:
+    address: 'localhost:3306'
+    username: 'root'
+    password: ''
+    database: 'test'
+  sqlite:
+    file: 'database/database.db'
+
+config:
+  # Pontos que irá receber a cada nivel evoluido
+  pointsPerLevel: 1
+  # Quantidade de xp recebida ao matar um zumbi
+  xpPerZombie: 50
+
+messages:
+  receivedPoints: '&b&lHABILIDADES &fVocê recebeu &a%points% &fpor upar &a%levels% &fníveis'

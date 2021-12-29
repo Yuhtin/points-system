@@ -1,47 +1,62 @@
 plugins {
     id 'java'
+
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    id 'net.minecrell.plugin-yml.bukkit' version '0.3.0'
 }
 
 group = 'com.yuhtin.commission'
 version = '1.0-SNAPSHOT'
 
+tasks.build.dependsOn('shadowJar')
+
 repositories {
     mavenCentral()
-    maven {
-        name = 'spigotmc-repo'
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-    }
-    maven {
-        name = 'sonatype'
-        url = 'https://oss.sonatype.org/content/groups/public/'
-    }
+
+    // spigot
+
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/groups/public/' }
+
+    maven { url = 'https://jitpack.io/' }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
+
+    implementation 'com.github.HenryFabio.configuration-injector:bukkit:1.0.2'
+    implementation 'com.github.HenryFabio:inventory-api:main-SNAPSHOT'
+    implementation 'com.github.HenryFabio:sql-provider:9561f20fd2'
+
+    def lombok = 'org.projectlombok:lombok:1.18.22'
+    compileOnly lombok
+    annotationProcessor lombok
 }
 
-def targetJavaVersion = 17
-java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+bukkit {
+    main = 'com.yuhtin.commission.PointsSystem'
+    authors = ['Yuhtin']
+    version = "${project.version}"
+    apiVersion = '1.13'
+    commands {
+        pontos {}
+        habilidades {}
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release = targetJavaVersion
-    }
+shadowJar {
+    archiveName("${project.name}-${project.version}.jar")
+
+    relocate 'com.henryfabio.minecraft.configinjector', 'com.nextplugins.economy.libs.configinjector'
+    relocate 'com.henryfabio.minecraft.inventoryapi', 'com.nextplugins.economy.libs.inventoryapi'
+
+    relocate 'com.henryfabio.sqlprovider', 'com.nextplugins.economy.libs.sqlprovider'
+    relocate 'com.zaxxer.hikari', 'com.nextplugins.economy.libs.hikari'
 }
 
-processResources {
-    def props = [version: version]
-    inputs.properties props
-    filteringCharset 'UTF-8'
-    filesMatching('plugin.yml') {
-        expand props
-    }
+compileJava {
+    options.encoding('UTF-8')
+
+    sourceCompatibility('1.8')
+    targetCompatibility('1.8')
 }
