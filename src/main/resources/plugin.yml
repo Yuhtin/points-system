@@ -1,0 +1,5 @@
+name: points-system
+version: '${version}'
+main: com.yuhtin.commission.pointssystem.PointsSystem
+api-version: 1.18
+authors: [ Yuhtin ]
