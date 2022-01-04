@@ -19,7 +19,7 @@ public class ReceivePointsListener implements Listener {
     @EventHandler
     public void onUpgradeLevel(PlayerLevelChangeEvent event) {
         val levelsUpgraded = event.getNewLevel() - event.getOldLevel();
-        if (levelsUpgraded <= 0 ) return;
+        if (levelsUpgraded <= 0) return;
 
         val player = event.getPlayer();
         val account = accountStorage.findAccount(player);
@@ -34,5 +34,5 @@ public class ReceivePointsListener implements Listener {
         ActionBarUtils.sendActionBar(player, message);
     }
 
-
 }
+

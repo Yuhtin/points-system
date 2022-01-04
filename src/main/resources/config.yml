@@ -13,6 +13,21 @@ config:
   pointsPerLevel: 1
   # Quantidade de xp recebida ao matar um zumbi
   xpPerZombie: 50
+  habilities:
+    # A cada nível irá aumentar 5% a quantidade de dano aplicado a zumbis
+    zombieDamagePerLevel: 5
+    # A cada nível irá aumentar 10% a quantidade de dano aplicado com a espada
+    swordDamagePerLevel: 10
+    # A cada nível o jogador irá receber 7% a menos de dano
+    resistancePerLevel: 7
+    # Irá reduzir 1 segundo na recarga do medkit a cada nível
+    medkitReloadPerLevel: 1
+    # Nível máximo de cada habilidade
+    maxLevels:
+      MEDKIT_RELOAD: 5
+      ZOMBIE_DAMAGE: 5
+      SWORD_DAMAGE: 5
+      RESISTANCE: 5
 
 messages:
   receivedPoints: '&b&lHABILIDADES &fVocê recebeu &a%points% &fpor upar &a%levels% &fníveis'

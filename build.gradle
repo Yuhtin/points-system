@@ -39,8 +39,9 @@ bukkit {
     version = "${project.version}"
     apiVersion = '1.13'
     commands {
-        pontos {}
-        habilidades {}
+        habilidades {
+            aliases = ["pontos", "ponto", "habilidade"]
+        }
     }
 }
 
