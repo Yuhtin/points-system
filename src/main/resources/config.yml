@@ -20,7 +20,7 @@ config:
     swordDamagePerLevel: 10
     # A cada nível o jogador irá receber 7% a menos de dano
     resistancePerLevel: 7
-    # Irá reduzir 1 segundo na recarga do medkit a cada nível
+    # Irá reduzir 0,5 segundo na recarga do medkit a cada nível
     medkitReloadPerLevel: 1
     # Nível máximo de cada habilidade
     maxLevels:

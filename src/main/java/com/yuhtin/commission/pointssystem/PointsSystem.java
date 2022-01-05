@@ -4,6 +4,7 @@ import com.google.common.base.Stopwatch;
 import com.henryfabio.minecraft.inventoryapi.manager.InventoryManager;
 import com.henryfabio.sqlprovider.executor.SQLExecutor;
 import com.yuhtin.commission.pointssystem.commands.HabilityCommand;
+import com.yuhtin.commission.pointssystem.configuration.registry.ConfigurationRegistry;
 import com.yuhtin.commission.pointssystem.dao.SQLProvider;
 import com.yuhtin.commission.pointssystem.dao.repository.AccountRepository;
 import com.yuhtin.commission.pointssystem.listener.ListenerRegistry;
@@ -43,6 +44,7 @@ public final class PointsSystem extends JavaPlugin {
 
         InventoryManager.enable(this);
         ListenerRegistry.of(this).register();
+        ConfigurationRegistry.of(this).register();
 
         getCommand("habilidades").setExecutor(new HabilityCommand());
 

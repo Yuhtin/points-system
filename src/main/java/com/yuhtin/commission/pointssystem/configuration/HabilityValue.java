@@ -23,10 +23,10 @@ public final class HabilityValue implements ConfigurationInjectable {
 
     @Getter private static final HabilityValue instance = new HabilityValue();
 
-    @ConfigField("zombieDamagePerLevel") private int zombieDamagePerLevel;
-    @ConfigField("swordDamagePerLevel") private int swordDamagePerLevel;
-    @ConfigField("resistancePerLevel") private int resistancePerLevel;
-    @ConfigField("medkitReloadPerLevel") private int medkitReloadPerLevel;
+    @ConfigField("zombieDamagePerLevel") private double zombieDamagePerLevel;
+    @ConfigField("swordDamagePerLevel") private double swordDamagePerLevel;
+    @ConfigField("resistancePerLevel") private double resistancePerLevel;
+    @ConfigField("medkitReloadPerLevel") private double medkitReloadPerLevel;
     @ConfigField("maxLevels") private ConfigurationSection maxLevelsSection;
 
     public static <T> T get(Function<HabilityValue, T> function) {

@@ -14,6 +14,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 
 @AllArgsConstructor
 public class IncreaseZombieListener implements Listener {
@@ -22,24 +23,24 @@ public class IncreaseZombieListener implements Listener {
 
     @EventHandler
     public void onHitZombie(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player)) return;
-
-        val player = (Player) event.getDamager();
-        val account = accountStorage.findAccount(player);
         var damage = event.getDamage();
-        val itemInHand = player.getItemInHand();
-        if (itemInHand != null && itemInHand.getType() == Material.DIAMOND_SWORD) {
-            val swordHability = account.getHabilities().getOrDefault(Hability.SWORD_DAMAGE, 0);
-            val levelMultiplier = 1 + (swordHability * HabilityValue.get(HabilityValue::swordDamagePerLevel) / 100);
+        if (event.getDamager() instanceof Player) {
+            val player = (Player) event.getDamager();
+            val account = accountStorage.findAccount(player);
+            val itemInHand = player.getItemInHand();
+            if (itemInHand != null && itemInHand.getType() == Material.DIAMOND_SWORD) {
+                val swordHability = account.getHabilities().getOrDefault(Hability.SWORD_DAMAGE, 0);
+                val levelMultiplier = 1 + (swordHability * HabilityValue.get(HabilityValue::swordDamagePerLevel) / 100);
 
-            damage *= levelMultiplier;
-        }
+                damage *= levelMultiplier;
+            }
 
-        if (event.getEntity() instanceof Zombie) {
-            val zombieDamageHability = account.getHabilities().getOrDefault(Hability.ZOMBIE_DAMAGE, 0);
-            val levelMultiplier = 1 + (zombieDamageHability * HabilityValue.get(HabilityValue::zombieDamagePerLevel) / 100);
+            if (event.getEntity() instanceof Zombie) {
+                val zombieDamageHability = account.getHabilities().getOrDefault(Hability.ZOMBIE_DAMAGE, 0);
+                val levelMultiplier = 1 + (zombieDamageHability * HabilityValue.get(HabilityValue::zombieDamagePerLevel) / 100);
 
-            damage *= levelMultiplier;
+                damage *= levelMultiplier;
+            }
         }
 
         if (event.getEntity() instanceof Player) {

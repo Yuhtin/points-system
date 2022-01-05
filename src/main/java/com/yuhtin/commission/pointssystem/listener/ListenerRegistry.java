@@ -20,6 +20,7 @@ public final class ListenerRegistry {
 
             val listeners = Arrays.asList(
                     new ReceivePointsListener(accountStorage),
+                    new IncreaseZombieListener(accountStorage),
                     new ReceiveXPListener()
             );
 
