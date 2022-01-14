@@ -9,7 +9,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.function.Function;
 

@@ -3,13 +3,13 @@ package com.yuhtin.commission.pointssystem.listener;
 import com.yuhtin.commission.pointssystem.configuration.FeatureValue;
 import com.yuhtin.commission.pointssystem.configuration.MessagesValue;
 import com.yuhtin.commission.pointssystem.storage.AccountStorage;
+import com.yuhtin.commission.pointssystem.util.ActionBarUtils;
+import com.yuhtin.commission.pointssystem.util.NumberUtil;
 import lombok.AllArgsConstructor;
 import lombok.val;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLevelChangeEvent;
-import com.yuhtin.commission.pointssystem.util.ActionBarUtils;
-import com.yuhtin.commission.pointssystem.util.NumberUtil;
 
 @AllArgsConstructor
 public class ReceivePointsListener implements Listener {
